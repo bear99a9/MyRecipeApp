@@ -1,25 +1,37 @@
 import { Injectable, OnInit, EventEmitter } from '@angular/core';
+import { Ingredient } from '../shared/models/ingredients.model';
 import { Recipe } from "../shared/models/recipe.model";
 
 @Injectable({ providedIn: 'root' })
 
 export class RecipeService implements OnInit {
     recipeSelected = new EventEmitter<Recipe>();
-    
+
     constructor() { }
 
     private recipes: Recipe[] = [
-        new Recipe('First test recipe', 'this is the first test recipe',
-            'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/gnocchi-1d16725.jpg?resize=960,872?quality=90&webp=true&resize=375,341'),
-        new Recipe('Second test recipe', 'this is the second test',
-            'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/gnocchi-1d16725.jpg?resize=960,872?quality=90&webp=true&resize=375,341')
+        new Recipe(
+            'Tasty Schnitzel',
+            'A super-tasty Schnitzel - just awesome!',
+            'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
+            [
+                new Ingredient('Meat', 1),
+                new Ingredient('French Fries', 20)
+            ]),
+        new Recipe('Big Fat Burger',
+            'What else you need to say?',
+            'https://upload.wikimedia.org/wikipedia/commons/b/be/Burger_King_Angus_Bacon_%26_Cheese_Steak_Burger.jpg',
+            [
+                new Ingredient('Buns', 2),
+                new Ingredient('Meat', 1)
+            ])
     ];
 
     ngOnInit() {
 
     }
 
-    getRecipes(){
+    getRecipes() {
         return this.recipes.slice(); // by calling slice creates a copy of the array so you can't access/ modify the actual array in the service
     }
 }
