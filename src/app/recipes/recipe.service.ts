@@ -5,6 +5,7 @@ import { Recipe } from "../shared/models/recipe.model";
 
 export class RecipeService implements OnInit {
     recipeSelected = new EventEmitter<Recipe>();
+    
     constructor() { }
 
     private recipes: Recipe[] = [
