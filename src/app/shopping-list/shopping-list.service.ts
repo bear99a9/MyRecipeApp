@@ -4,7 +4,7 @@ import { Ingredient } from "../shared/models/ingredients.model";
 @Injectable({ providedIn: 'root' })
 
 export class ShoppingListService implements OnInit {
-    
+
     ingredientsChanged = new EventEmitter<Ingredient[]>();
 
     ingredients: Ingredient[] = [
@@ -18,19 +18,17 @@ export class ShoppingListService implements OnInit {
 
     }
 
-    getIngredients(){
+    getIngredients() {
         return this.ingredients.slice();
     }
 
-    AddIngredient(newIngredient: Ingredient){
+    AddIngredient(newIngredient: Ingredient) {
         this.ingredients.push(newIngredient);
         this.ingredientsChanged.emit(this.ingredients.slice());
     }
 
-    AddIngredients(newIngredients: Ingredient[]){
+    AddIngredients(newIngredients: Ingredient[]) {
         this.ingredients.push(...newIngredients);
         this.ingredientsChanged.emit(this.ingredients.slice());
     }
-
-
 }
