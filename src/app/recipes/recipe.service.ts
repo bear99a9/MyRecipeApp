@@ -34,4 +34,8 @@ export class RecipeService implements OnInit {
     getRecipes() {
         return this.recipes.slice(); // by calling slice creates a copy of the array so you can't access/ modify the actual array in the service
     }
+
+    getRecipe(id: number){
+        return this.recipes[id];
+    }
 }
