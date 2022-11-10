@@ -1,12 +1,10 @@
-import { Injectable, OnInit, EventEmitter } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/models/ingredients.model';
 import { Recipe } from "../shared/models/recipe.model";
 
 @Injectable({ providedIn: 'root' })
 
 export class RecipeService implements OnInit {
-    recipeSelected = new EventEmitter<Recipe>();
-
     constructor() { }
 
     private recipes: Recipe[] = [
