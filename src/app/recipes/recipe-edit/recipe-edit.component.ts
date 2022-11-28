@@ -16,7 +16,7 @@ export class RecipeEditComponent implements OnInit {
   id: number;
   editMode: boolean = false;
   recipeForm: FormGroup;
- 
+
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
@@ -28,6 +28,16 @@ export class RecipeEditComponent implements OnInit {
 
   onSubmit(){
     console.log(this.recipeForm);
+  }
+
+  onAddIngredient(){
+    (<FormArray>this.recipeForm.get('ingredients')).push(new FormGroup({
+      'name': new FormControl(),
+      'amount': new FormControl()
+    }));
+  }
+
+  onDeleteIngredient(){
   }
 
   getControls = () => (<FormArray>this.recipeForm.get('ingredients')).controls;
