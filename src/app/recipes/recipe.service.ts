@@ -36,4 +36,17 @@ export class RecipeService implements OnInit {
     getRecipe(id: number){
         return this.recipes[id];
     }
+
+
+    addRecipe(recipe: Recipe){
+        this.recipes.push(recipe);
+    }
+
+    updateRecipe(index: number, recipe: Recipe){
+        this.recipes[index] = recipe;
+    }
+
+    deleteRecipe(index: number){
+        this.recipes.splice(index, 1);
+    }
 }
