@@ -30,7 +30,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.recipesChangedSub.unsubscribe();
+    if (this.recipesChangedSub) {
+      this.recipesChangedSub.unsubscribe();
+    }
   }
 
 
