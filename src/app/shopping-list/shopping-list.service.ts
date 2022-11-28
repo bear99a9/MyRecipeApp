@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from "@angular/core";
 import { Subject } from "rxjs";
-import { Ingredient } from "../shared/models/ingredients.model";
+import { Ingredient } from '../shared/models/ingredients.model';
 
 @Injectable({ providedIn: 'root' })
 
@@ -25,19 +25,27 @@ export class ShoppingListService implements OnInit {
 
     AddIngredient(newIngredient: Ingredient) {
         this.ingredients.push(newIngredient);
-        this.ingredientsChanged.next(this.ingredients.slice());
+        this.changeIngredients()
     }
 
     AddIngredients(newIngredients: Ingredient[]) {
         this.ingredients.push(...newIngredients);
-        this.ingredientsChanged.next(this.ingredients.slice());
+        this.changeIngredients()
     }
 
-    getIngredientByIndex = (index: number) =>  this.ingredients[index];
+    getIngredientByIndex = (index: number) => this.ingredients[index];
 
-    UpdateIngredient(index: number, editedIngredient: Ingredient) {
+    updateIngredient(index: number, editedIngredient: Ingredient) {
         this.ingredients[index] = editedIngredient;
-        this.ingredientsChanged.next(this.ingredients.slice());
+        this.changeIngredients()
     }
+
+    deleteIngredient(index: number) {
+        this.ingredients.splice(index, 1);
+        this.changeIngredients()
+    }
+
+    changeIngredients = () => this.ingredientsChanged.next(this.ingredients.slice());
+
 
 }
