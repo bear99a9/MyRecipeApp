@@ -7,7 +7,7 @@ import { Ingredient } from "../shared/models/ingredients.model";
 export class ShoppingListService implements OnInit {
 
     public ingredientsChanged = new Subject<Ingredient[]>();
-
+    public startedEditing = new Subject<number>();
     public ingredients: Ingredient[] = [
         new Ingredient('Tomatoes', 5),
         new Ingredient('Pasta', 1)
