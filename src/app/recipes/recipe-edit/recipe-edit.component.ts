@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { RecipeService } from '../recipe.service';
@@ -10,7 +10,7 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeEditComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
     private recipeService: RecipeService) { }
 
   id: number;
@@ -24,25 +24,32 @@ export class RecipeEditComponent implements OnInit {
         this.editMode = params['id'] != null;
         this.initForm();
       });
+
   }
 
-  onSubmit(){
-    console.log(this.recipeForm);
+  onSubmit() {
+    if (this.editMode) {
+      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+    } else {
+      this.recipeService.addRecipe(this.recipeForm.value);
+    }
   }
 
-  onAddIngredient(){
+  onAddIngredient() {
     (<FormArray>this.recipeForm.get('ingredients')).push(new FormGroup({
       'name': new FormControl(null, Validators.required),
       'amount': new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
     }));
   }
 
-  onDeleteIngredient(){
+  onDeleteIngredient() {
   }
 
-  getControls = () => (<FormArray>this.recipeForm.get('ingredients')).controls;
   
-  private initForm(){
+
+  getControls = () => (<FormArray>this.recipeForm.get('ingredients')).controls;
+
+  private initForm() {
     let recipeName = '';
     let recipeImagePath = '';
     let recipeDescription = '';
